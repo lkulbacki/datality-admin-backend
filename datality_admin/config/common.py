@@ -25,6 +25,8 @@ class Common(Configuration):
 
         # Your apps
         'datality_admin.users',
+        'offers',
+        'products'
 
     )
 
@@ -69,6 +71,8 @@ class Common(Configuration):
             conn_max_age=int(os.getenv('POSTGRES_CONN_MAX_AGE', 600))
         ),
     }
+
+    DATABASE_ROUTERS = ['datality_admin.routers.ProductsRouter', 'datality_admin.routers.OffersRouter']
 
     # General
     APPEND_SLASH = False
