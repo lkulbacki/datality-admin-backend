@@ -52,13 +52,22 @@ class Common(Configuration):
     )
 
     # Postgres
-    POSTGRESQL_USERNAME=config('POSTGRESQL_USERNAME')
-    POSTGRESQL_PASSWORD=config('POSTGRESQL_PASSWORD')
+    POSTGRESQL_CONNECTION_STRING_ADMIN_USERS=config('POSTGRESQL_CONNECTION_STRING_ADMIN_USERS')
+    POSTGRESQL_CONNECTION_STRING_PRODUCTS=config('POSTGRESQL_CONNECTION_STRING_PRODUCTS')
+    POSTGRESQL_CONNECTION_STRING_OFFERS=config('POSTGRESQL_CONNECTION_STRING_OFFERS')
     DATABASES = {
         'default': dj_database_url.config(
-            default='postgres://{}:{}@localhost:5433/datality_stage_pl'.format(POSTGRESQL_USERNAME,POSTGRESQL_PASSWORD),
+            default=POSTGRESQL_CONNECTION_STRING_ADMIN_USERS,
             conn_max_age=int(os.getenv('POSTGRES_CONN_MAX_AGE', 600))
-        )
+        ),
+        'products': dj_database_url.config(
+            default=POSTGRESQL_CONNECTION_STRING_PRODUCTS,
+            conn_max_age=int(os.getenv('POSTGRES_CONN_MAX_AGE', 600))
+        ),
+        'offers': dj_database_url.config(
+            default=POSTGRESQL_CONNECTION_STRING_OFFERS,
+            conn_max_age=int(os.getenv('POSTGRES_CONN_MAX_AGE', 600))
+        ),
     }
 
     # General
