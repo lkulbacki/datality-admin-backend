@@ -7,7 +7,7 @@ class ProductViewSet(mixins.ListModelMixin,
                    mixins.RetrieveModelMixin, 
                    viewsets.GenericViewSet):
     """
-    Retrieves offers as a list or single entry
+    Retrieves products as a list or single entry
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
