@@ -1,23 +1,30 @@
 # datality-admin-backend
 
-[![Build Status](https://travis-ci.org/lkulbacki/datality-admin-backend.svg?branch=master)](https://travis-ci.org/lkulbacki/datality-admin-backend)
 [![Built with](https://img.shields.io/badge/Built_with-Cookiecutter_Django_Rest-F7B633.svg)](https://github.com/agconti/cookiecutter-django-rest)
-
--. Check out the project's [documentation](http://lkulbacki.github.io/datality-admin-backend/).
 
 # Prerequisites
 
-- [Docker](https://docs.docker.com/docker-for-mac/install/)  
+- Project built and tested with python 3.9.4
 
-# Local Development
+Future plans: migration to Docker
 
-Start the dev server for local development:
-```bash
-docker-compose up
-```
+# Development environment setup
+`pyenv install 3.9.4`
+`pyenv virtualenv 3.9.4 datality-admin`
+`pyenv local 3.9.4/envs/datality-admin`
+`pip install --upgrade pip`
+`pip install -r requirements.txt`
 
-Run a command inside the docker container:
+You may need to configure connection to postgresql and creation of appropriate .env file inside main folder,
+consisting of following constants:
+`SECRET_KEY` - Django secret key
+`POSTGRESQL_CONNECTION_STRING_ADMIN_USERS`, `POSTGRESQL_CONNECTION_STRING_PRODUCTS`, `POSTGRESQL_CONNECTION_STRING_OFFERS`
 
-```bash
-docker-compose run --rm web [command]
-```
+Hint: due to historical reasons, project uses and operates between three different databases. The connection string above
+should represent them.
+
+Once databases are configured, you can proceed with migrations:
+`python manage.py migrate`
+
+# To start development server locally
+`python manage.py runserver`
