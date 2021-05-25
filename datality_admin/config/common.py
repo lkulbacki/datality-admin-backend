@@ -119,6 +119,12 @@ class Common(Configuration):
     # https://docs.djangoproject.com/en/dev/ref/settings/#debug
     DEBUG = strtobool(os.getenv('DJANGO_DEBUG', 'no'))
 
+    # Flag for testing when using unmanaged (external) databases
+    # This should remain False to protect database integrity
+    # Placed here to be switched to True for local testing purposes - otherwise test setup fails
+    # as migrations with Meta.managed=False are not being run
+    MANAGE_EXTERNAL_DATABASES = False
+
     # Password Validation
     # https://docs.djangoproject.com/en/2.0/topics/auth/passwords/#module-django.contrib.auth.password_validation
     AUTH_PASSWORD_VALIDATORS = [

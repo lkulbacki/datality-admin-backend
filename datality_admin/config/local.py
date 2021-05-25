@@ -19,6 +19,10 @@ class Local(Common):
         '--cover-package=datality_admin'
     ]
 
+    # Change to True for purpose of running tests only!
+    # This overwrites common setting, look there for details
+    MANAGE_EXTERNAL_DATABASES = True
+
     # Mail
     EMAIL_HOST = 'localhost'
     EMAIL_PORT = 1025
