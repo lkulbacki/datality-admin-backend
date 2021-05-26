@@ -45,3 +45,18 @@ class ProductSerializer(serializers.ModelSerializer):
                   'first_active',
                   'last_active')
 
+
+class ProductSerializerCustom(serializers.Serializer):
+    class Meta:
+        model = Product
+        fields = ('id',
+                  'brand',
+                  'brand_id',
+                  'commercial_code',
+                  'category',
+                  'keys',
+                  'created_at',
+                  'updated_at',
+                  'first_active',
+                  'last_active',
+                  'official')
