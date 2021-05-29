@@ -8,12 +8,6 @@ class BrandKeysSerializer(serializers.ModelSerializer):
         fields = ('key',)
 
 
-class BrandSerializerNoKeys(serializers.ModelSerializer):
-    class Meta:
-        model = Brand
-        fields = ('id', 'name')
-
-
 class BrandSerializer(serializers.ModelSerializer):
     keys = BrandKeysSerializer(many=True, read_only=True)
     class Meta:
@@ -28,8 +22,8 @@ class ModelKeysSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    keys = ModelKeysSerializer(many=True, read_only=True)
-    brand = BrandSerializerNoKeys(read_only=True)
+    keys = serializers.SlugRelatedField(many=True, read_only=True, slug_field="key")
+    brand = serializers.SlugRelatedField(read_only=True, slug_field="name")
     class Meta:
         model = Product
         model._meta.ordering = ['-id']
@@ -39,24 +33,9 @@ class ProductSerializer(serializers.ModelSerializer):
                   'category',
                   'official',
                   'brand',
+                  'brand_id',
                   'keys',
                   'created_at',
                   'updated_at',
                   'first_active',
                   'last_active')
-
-
-class ProductSerializerCustom(serializers.Serializer):
-    class Meta:
-        model = Product
-        fields = ('id',
-                  'brand',
-                  'brand_id',
-                  'commercial_code',
-                  'category',
-                  'keys',
-                  'created_at',
-                  'updated_at',
-                  'first_active',
-                  'last_active',
-                  'official')
