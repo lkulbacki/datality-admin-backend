@@ -43,6 +43,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('key', models.CharField(blank=True, max_length=255, null=True)),
+                ('product_id', models.IntegerField(blank=True, null=True)),
                 ('created_at', models.DateTimeField(blank=True, null=True)),
                 ('updated_at', models.DateTimeField(blank=True, null=True)),
             ],

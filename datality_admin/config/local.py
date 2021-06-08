@@ -16,7 +16,8 @@ class Local(Common):
         '--nologcapture',
         '--with-coverage',
         '--with-progressive',
-        '--cover-package=datality_admin'
+        '--cover-package=datality_admin',
+        '--verbosity=2'
     ]
 
     # Change to True for purpose of running tests only!
