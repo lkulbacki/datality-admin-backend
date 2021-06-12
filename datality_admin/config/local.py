@@ -16,8 +16,13 @@ class Local(Common):
         '--nologcapture',
         '--with-coverage',
         '--with-progressive',
-        '--cover-package=datality_admin'
+        '--cover-package=datality_admin',
+        '--verbosity=2'
     ]
+
+    # Change to True for purpose of running tests only!
+    # This overwrites common setting, look there for details
+    MANAGE_EXTERNAL_DATABASES = True
 
     # Mail
     EMAIL_HOST = 'localhost'

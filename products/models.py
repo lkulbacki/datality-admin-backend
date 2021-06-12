@@ -12,7 +12,7 @@ class Brand(models.Model):
 
 class BrandKey(models.Model):
     key = models.CharField(max_length=255, blank=True, null=True)
-    brand = models.ForeignKey('Brand', models.PROTECT, blank=True, null=True)
+    brand = models.ForeignKey('Brand', models.PROTECT, related_name='keys', blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
@@ -26,7 +26,7 @@ class Product(models.Model):
     commercial_code = models.TextField(blank=True, null=True)
     category = models.TextField(blank=True, null=True)
     official = models.BooleanField(blank=True, null=True)
-    brand = models.ForeignKey('Brand', models.PROTECT, blank=True, null=True)
+    brand = models.ForeignKey('Brand', models.PROTECT, related_name='products', blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
     first_active = models.DateTimeField(blank=True, null=True)
@@ -40,7 +40,7 @@ class Product(models.Model):
 
 class ModelKey(models.Model):
     key = models.CharField(max_length=255, blank=True, null=True)
-    product = models.ForeignKey('Product', models.PROTECT, blank=True, null=True)
+    product = models.ForeignKey('Product', models.PROTECT, related_name='keys', blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
@@ -62,7 +62,7 @@ class Shop(models.Model):
 
 class ShopKey(models.Model):
     key = models.TextField(blank=True, null=True)
-    shop = models.ForeignKey('Shop', models.PROTECT, blank=True, null=True)
+    shop = models.ForeignKey('Shop', models.PROTECT, related_name='keys', blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
