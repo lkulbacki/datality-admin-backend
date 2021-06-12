@@ -6,6 +6,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 class Local(Common):
     DEBUG = True
 
+    # CORS configuration for development needs
+    
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:8080",
+    ]
+
+    CORS_ALLOW_METHODS = [
+        'GET',
+        'OPTIONS',
+    ]
+
     # Testing
     INSTALLED_APPS = Common.INSTALLED_APPS
     INSTALLED_APPS += ('django_nose',)
